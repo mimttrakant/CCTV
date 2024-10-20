@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Stream Player</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            padding: 20px; /* เพิ่ม padding */
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-align: center; /* จัดกลาง */
+        }
+        input {
+            width: 100%; /* ทำให้กว้างเต็มที่ */
+            max-width: 400px; /* กำหนดความกว้างสูงสุด */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px; /* ขนาดตัวอักษร */
+        }
+        button {
+            width: 100%; /* ทำให้กว้างเต็มที่ */
+            max-width: 400px; /* กำหนดความกว้างสูงสุด */
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px; /* ขนาดตัวอักษร */
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        img {
+            max-width: 100%; /* ทำให้ภาพขยายตามขนาดของหน้าจอ */
+            height: auto;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none; /* เริ่มต้นซ่อนภาพ */
+        }
+    </style>
+</head>
+<body>
+    <h1>Camera Stream Player</h1>
+    <input type="text" id="urlInput" placeholder="Enter camera stream URL (e.g., http://192.168.110.197/)">
+    <button id="loadStreamButton">Load Stream</button>
+    <img id="cameraStream" alt="Camera Stream">
+
+    <script>
+        document.getElementById('loadStreamButton').addEventListener('click', function() {
+            const url = document.getElementById('urlInput').value.trim();
+            const img = document.getElementById('cameraStream');
+
+            if (url) {
+                img.src = url + '?_=' + new Date().getTime(); // เพิ่มพารามิเตอร์เพื่อรีเฟรช
+                img.style.display = 'block'; // แสดงภาพ
+            } else {
+                alert('Please enter a valid URL.');
+            }
+        });
+    </script>
+</body>
+</html>
